@@ -275,6 +275,12 @@ src/main/java/com/<empresa>/<servicio>/
 - Montos con **`BigDecimal`**. Operaciones de movimiento con `@Transactional`.
 - Esquema controlado por script SQL (`BaseDatos.sql`) y/o Flyway; `ddl-auto` en `validate` o `none`.
 
+### 11.2.1 Convención de idioma en el código
+
+- En **español** solo: nombres de las entidades del enunciado (`Persona`, `Cliente`, `Cuenta`, `Movimiento`) y sus atributos (`nombre`, `genero`, `edad`, `identificacion`, `direccion`, `telefono`, `clienteId`, `contrasena`, `estado`, ...). Los getters siguen el nombre del atributo (`getNombre`).
+- Todo lo demás en **inglés**: métodos, enums, excepciones, puertos, casos de uso, DTOs, variables auxiliares. Si un nombre contiene la entidad, esta queda en español (`ClienteRepository`, `CreateClienteUseCase`).
+- Los **mensajes mostrados al usuario** de la API (errores) siguen en español; `"Saldo no disponible"` es literal del enunciado.
+
 ### 11.3 Uso de características modernas de Java 21
 
 | Característica | Dónde usarla |
@@ -327,7 +333,7 @@ src/main/java/com/<empresa>/<servicio>/
 ### 11.6 Mensajería y comunicación asíncrona
 
 - **Decisión:** **RabbitMQ** (más simple de levantar en docker-compose que Kafka para este alcance).
-- **MS Clientes** publica eventos (`ClienteCreado`, `ClienteActualizado`, `ClienteEliminado`) modelados como **records**.
+- **MS Clientes** publica eventos (`ClienteCreated`, `ClienteUpdated`, `ClienteDeleted`) modelados como **records**.
 - **MS Cuentas** los consume para validar/guardar la referencia al cliente (ej. al crear una cuenta verificar que el `clienteId` existe y está activo).
 - Para el reporte por cliente, MS Cuentas mantiene una copia local mínima del cliente (id, nombre, estado) actualizada vía eventos.
 - **Resiliencia (mencionar aunque no se implemente todo):** consumidores idempotentes, reintentos, Dead Letter Queue, patrón Outbox, health checks.
@@ -344,7 +350,7 @@ src/main/java/com/<empresa>/<servicio>/
 
 ### 11.8 Manejo de errores
 
-- Excepciones de dominio: `SaldoNoDisponibleException`, `RecursoNoEncontradoException`, `ClienteDuplicadoException`, etc.
+- Excepciones de dominio: `InsufficientBalanceException` (mensaje `"Saldo no disponible"`), `ResourceNotFoundException`, `DuplicateClienteException`, etc.
 - `@RestControllerAdvice` con respuesta estándar (puede modelarse con un record):
 
 ```json

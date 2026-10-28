@@ -1,0 +1,586 @@
+{
+    "info":  {
+                 "name":  "BP Microservicios",
+                 "description":  "Coleccion de validacion de MS Clientes y MS Cuentas. Ejecutar las carpetas en orden.",
+                 "schema":  "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+             },
+    "variable":  [
+                     {
+                         "key":  "baseUrlClientes",
+                         "value":  "http://localhost:8081"
+                     }
+                 ],
+    "item":  [
+                 {
+                     "name":  "1. Casos de uso - Clientes (8.1)",
+                     "item":  [
+                                  {
+                                      "name":  "Crear Jose Lema",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027estado activo\u0027, function () { pm.expect(pm.response.json().estado).to.eql(true); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"clienteId\": \"jlema\",\n  \"nombre\": \"Jose Lema\",\n  \"genero\": \"MALE\",\n  \"edad\": 35,\n  \"identificacion\": \"1700000001\",\n  \"direccion\": \"Otavalo sn y principal\",\n  \"telefono\": \"098254785\",\n  \"contrasena\": \"1234\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear Marianela Montalvo",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"clienteId\": \"mmontalvo\",\n  \"nombre\": \"Marianela Montalvo\",\n  \"genero\": \"FEMALE\",\n  \"edad\": 30,\n  \"identificacion\": \"1700000002\",\n  \"direccion\": \"Amazonas y NNUU\",\n  \"telefono\": \"097548965\",\n  \"contrasena\": \"5678\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear Juan Osorio",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"clienteId\": \"josorio\",\n  \"nombre\": \"Juan Osorio\",\n  \"genero\": \"MALE\",\n  \"edad\": 40,\n  \"identificacion\": \"1700000003\",\n  \"direccion\": \"13 junio y Equinoccial\",\n  \"telefono\": \"098874587\",\n  \"contrasena\": \"1245\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  }
+                              ]
+                 },
+                 {
+                     "name":  "2. Clientes - CRUD",
+                     "item":  [
+                                  {
+                                      "name":  "Listar clientes",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027es un arreglo\u0027, function () { pm.expect(pm.response.json()).to.be.an(\u0027array\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes"
+                                                                           ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Obtener cliente por clienteId",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027no expone contrasena\u0027, function () { pm.expect(pm.response.json()).to.not.have.property(\u0027contrasena\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes/jlema",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes",
+                                                                               "jlema"
+                                                                           ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Actualizar cliente (PUT)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "PUT",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes/jlema",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes",
+                                                                               "jlema"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"nombre\": \"Jose Lema\",\n  \"genero\": \"MALE\",\n  \"edad\": 35,\n  \"identificacion\": \"1700000001\",\n  \"direccion\": \"Otavalo sn y principal\",\n  \"telefono\": \"098254785\",\n  \"estado\": true\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear cliente temporal",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"clienteId\": \"temporal\",\n  \"nombre\": \"Cliente Temporal\",\n  \"identificacion\": \"1700000099\",\n  \"contrasena\": \"0000\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Actualizar cliente temporal (PUT)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027estado inactivo\u0027, function () { pm.expect(pm.response.json().estado).to.eql(false); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "PUT",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes/temporal",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes",
+                                                                               "temporal"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"nombre\": \"Cliente Temporal Editado\",\n  \"genero\": \"OTHER\",\n  \"edad\": 22,\n  \"identificacion\": \"1700000099\",\n  \"direccion\": \"Nueva direccion\",\n  \"telefono\": \"090000000\",\n  \"estado\": false\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Eliminar cliente temporal",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 204\u0027, function () { pm.response.to.have.status(204); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "DELETE",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes/temporal",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes",
+                                                                               "temporal"
+                                                                           ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Obtener cliente eliminado",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 404\u0027, function () { pm.response.to.have.status(404); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes/temporal",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes",
+                                                                               "temporal"
+                                                                           ]
+                                                              }
+                                                  }
+                                  }
+                              ]
+                 },
+                 {
+                     "name":  "3. Clientes - Errores",
+                     "item":  [
+                                  {
+                                      "name":  "Crear con identificacion duplicada (409)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 409\u0027, function () { pm.response.to.have.status(409); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: Ya existe\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027Ya existe\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"clienteId\": \"jlema\",\n  \"nombre\": \"Jose Lema\",\n  \"genero\": \"MALE\",\n  \"edad\": 35,\n  \"identificacion\": \"1700000001\",\n  \"direccion\": \"Otavalo sn y principal\",\n  \"telefono\": \"098254785\",\n  \"contrasena\": \"1234\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear con campos obligatorios vacios (400)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: obligatori\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027obligatori\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{ \"nombre\": \"\", \"contrasena\": \"\" }",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear con genero invalido (400)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{ \"nombre\": \"X\", \"genero\": \"XX\", \"identificacion\": \"1\", \"contrasena\": \"1\" }",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Obtener cliente inexistente (404)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 404\u0027, function () { pm.response.to.have.status(404); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: no encontrado\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027no encontrado\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlClientes}}/api/clientes/no-existe",
+                                                                  "host":  [
+                                                                               "{{baseUrlClientes}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "clientes",
+                                                                               "no-existe"
+                                                                           ]
+                                                              }
+                                                  }
+                                  }
+                              ]
+                 }
+             ]
+}
