@@ -57,6 +57,10 @@ public class GlobalExceptionHandler {
     }
 
     private ResponseEntity<ErrorResponse> build(HttpStatus status, String message, HttpServletRequest request) {
+        if (status.is4xxClientError()) {
+            log.warn("Request rejected: {} {} -> {} {}", request.getMethod(), request.getRequestURI(),
+                    status.value(), message);
+        }
         return ResponseEntity.status(status).body(ErrorResponse.of(status, message, request.getRequestURI()));
     }
 }

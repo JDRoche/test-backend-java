@@ -18,6 +18,11 @@ spring:
     hibernate:
       ddl-auto: none
 
+logging:
+  level:
+    # INFO shows what happens (creations, updates, requests); use LOG_LEVEL=DEBUG for more detail
+    com.dev: ${LOG_LEVEL:INFO}
+
 server:
   port: ${SERVER_PORT:8081}
 

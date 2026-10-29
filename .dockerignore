@@ -1,0 +1,9 @@
+**/build
+**/.gradle
+.git
+.github
+.idea
+.vscode
+postman
+entrega
+*.zip

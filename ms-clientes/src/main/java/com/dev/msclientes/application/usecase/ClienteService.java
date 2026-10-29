@@ -18,6 +18,8 @@ import com.dev.msclientes.domain.port.out.ClienteEventPublisher;
 import com.dev.msclientes.domain.port.out.ClienteRepository;
 import com.dev.msclientes.domain.port.out.PasswordHasher;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -26,6 +28,8 @@ import java.util.UUID;
 @Transactional
 public class ClienteService implements CreateClienteUseCase, QueryClienteUseCase,
         UpdateClienteUseCase, DeleteClienteUseCase {
+
+    private static final Logger log = LoggerFactory.getLogger(ClienteService.class);
 
     private final ClienteRepository repository;
     private final ClienteEventPublisher eventPublisher;
@@ -57,6 +61,7 @@ public class ClienteService implements CreateClienteUseCase, QueryClienteUseCase
 
         Cliente saved = repository.save(cliente);
         eventPublisher.publish(ClienteCreated.from(saved));
+        log.info("Cliente created: clienteId={}", saved.getClienteId());
         return ClienteResult.from(saved);
     }
 
@@ -84,12 +89,15 @@ public class ClienteService implements CreateClienteUseCase, QueryClienteUseCase
 
         cliente.update(command.nombre(), command.genero(), command.edad(), command.identificacion(),
                 command.direccion(), command.telefono(), command.estado());
-        if (!isBlank(command.contrasena())) {
+        boolean passwordChanged = !isBlank(command.contrasena());
+        if (passwordChanged) {
             cliente.changePassword(passwordHasher.hash(command.contrasena()));
         }
 
         Cliente saved = repository.save(cliente);
         eventPublisher.publish(ClienteUpdated.from(saved));
+        log.info("Cliente updated: clienteId={} estado={} passwordChanged={}",
+                saved.getClienteId(), saved.isEstado(), passwordChanged);
         return ClienteResult.from(saved);
     }
 
@@ -98,6 +106,7 @@ public class ClienteService implements CreateClienteUseCase, QueryClienteUseCase
         Cliente cliente = findOrThrow(clienteId);
         repository.delete(cliente);
         eventPublisher.publish(ClienteDeleted.from(cliente));
+        log.info("Cliente deleted: clienteId={}", cliente.getClienteId());
     }
 
     private Cliente findOrThrow(String clienteId) {

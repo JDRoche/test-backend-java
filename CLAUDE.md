@@ -388,22 +388,22 @@ src/main/java/com/<empresa>/<servicio>/
 
 ## 12. Checklist de entrega
 
-- [ ] 2 microservicios funcionando con comunicación asíncrona
-- [ ] Entidades Persona, Cliente, Cuenta, Movimiento con JPA
-- [ ] CRUD `/clientes`, CRU `/cuentas` y `/movimientos`
-- [ ] Registro de movimientos con actualización de saldo (F2)
-- [ ] Mensaje `"Saldo no disponible"` (F3) con manejo global de excepciones
-- [ ] Reporte `/reportes` por rango de fechas y cliente en JSON (F4)
-- [ ] Prueba unitaria de la entidad Cliente (F5)
-- [ ] Prueba de integración (F6)
-- [ ] Docker / docker-compose funcionando (F7)
-- [ ] Proyecto con Gradle Wrapper y Java 21 toolchain; `./gradlew test` ejecuta todos los tests (incluido Karate)
-- [ ] Arquitectura hexagonal respetada (test ArchUnit en verde)
-- [ ] JPA bloqueante con virtual threads habilitados (sin WebFlux/R2DBC)
-- [ ] `BaseDatos.sql`
-- [ ] Colección Postman (JSON)
-- [ ] Karate dentro del proyecto Java (si aplica)
-- [ ] README con instrucciones de despliegue
+- [x] 2 microservicios funcionando con comunicación asíncrona
+- [x] Entidades Persona, Cliente, Cuenta, Movimiento con JPA
+- [x] CRUD `/clientes`, CRU `/cuentas` y `/movimientos`
+- [x] Registro de movimientos con actualización de saldo (F2)
+- [x] Mensaje `"Saldo no disponible"` (F3) con manejo global de excepciones
+- [x] Reporte `/reportes` por rango de fechas y cliente en JSON (F4)
+- [x] Prueba unitaria de la entidad Cliente (F5)
+- [x] Prueba de integración (F6)
+- [x] Docker / docker-compose funcionando (F7) — verificado: 4 contenedores `healthy` y colección Postman 49/49
+- [x] Proyecto con Gradle Wrapper y Java 21 toolchain; `./gradlew test` ejecuta todos los tests (incluido Karate) — requiere Docker (Testcontainers)
+- [x] Arquitectura hexagonal respetada (test ArchUnit en verde)
+- [x] JPA bloqueante con virtual threads habilitados (sin WebFlux/R2DBC)
+- [x] `BaseDatos.sql`
+- [x] Colección Postman (JSON)
+- [x] Karate dentro del proyecto Java (si aplica)
+- [x] README con instrucciones de despliegue
 - [ ] Repositorio público en GitHub + URL en comentarios
-- [ ] `.zip` / `.rar` con todos los archivos
-- [ ] Datos de los casos de uso (8.1–8.5) cargados/probados y coincidiendo con los resultados esperados
+- [ ] `.zip` / `.rar` con todos los archivos — generado en `entrega/bp-microservicios.zip`; falta subirlo
+- [x] Datos de los casos de uso (8.1–8.5) cargados/probados y coincidiendo con los resultados esperados

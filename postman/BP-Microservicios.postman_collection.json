@@ -8,6 +8,14 @@
                      {
                          "key":  "baseUrlClientes",
                          "value":  "http://localhost:8081"
+                     },
+                     {
+                         "key":  "baseUrlCuentas",
+                         "value":  "http://localhost:8082"
+                     },
+                     {
+                         "key":  "movimientoId",
+                         "value":  ""
                      }
                  ],
     "item":  [
@@ -144,7 +152,416 @@
                               ]
                  },
                  {
-                     "name":  "2. Clientes - CRUD",
+                     "name":  "2. Casos de uso - Cuentas (8.2 y 8.3)",
+                     "item":  [
+                                  {
+                                      "name":  "Crear cuenta 478758 - Ahorros - Jose Lema",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "setTimeout(function () {}, 1500); // los clientes llegan a MS Cuentas por eventos asincronos (RabbitMQ)"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "prerequest"
+                                                    },
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027Saldo actual de la cuenta = 2000\u0027, function () { pm.expect(Number(pm.response.json().currentBalance)).to.eql(2000); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"478758\",\n  \"tipoCuenta\": \"AHORROS\",\n  \"saldoInicial\": 2000,\n  \"clienteId\": \"jlema\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear cuenta 225487 - Corriente - Marianela Montalvo",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027Saldo actual de la cuenta = 100\u0027, function () { pm.expect(Number(pm.response.json().currentBalance)).to.eql(100); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"225487\",\n  \"tipoCuenta\": \"CORRIENTE\",\n  \"saldoInicial\": 100,\n  \"clienteId\": \"mmontalvo\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear cuenta 495878 - Ahorros - Juan Osorio",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027Saldo actual de la cuenta = 0\u0027, function () { pm.expect(Number(pm.response.json().currentBalance)).to.eql(0); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"495878\",\n  \"tipoCuenta\": \"AHORROS\",\n  \"saldoInicial\": 0,\n  \"clienteId\": \"josorio\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear cuenta 496825 - Ahorros - Marianela Montalvo",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027Saldo actual de la cuenta = 540\u0027, function () { pm.expect(Number(pm.response.json().currentBalance)).to.eql(540); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"496825\",\n  \"tipoCuenta\": \"AHORROS\",\n  \"saldoInicial\": 540,\n  \"clienteId\": \"mmontalvo\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear cuenta 585545 - Corriente - Jose Lema (8.3)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027Saldo actual de la cuenta = 1000\u0027, function () { pm.expect(Number(pm.response.json().currentBalance)).to.eql(1000); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"585545\",\n  \"tipoCuenta\": \"CORRIENTE\",\n  \"saldoInicial\": 1000,\n  \"clienteId\": \"jlema\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  }
+                              ]
+                 },
+                 {
+                     "name":  "3. Casos de uso - Movimientos (8.4)",
+                     "item":  [
+                                  {
+                                      "name":  "Retiro de 575 en 478758 -\u003e 1425",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027Saldo disponible = 1425\u0027, function () { pm.expect(Number(pm.response.json().saldo)).to.eql(1425); });",
+                                                                                    "pm.test(\u0027tipo RETIRO\u0027, function () { pm.expect(pm.response.json().tipoMovimiento).to.eql(\u0027RETIRO\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"478758\",\n  \"valor\": -575\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Deposito de 600 en 225487 -\u003e 700 (10/2/2022)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027Saldo disponible = 700\u0027, function () { pm.expect(Number(pm.response.json().saldo)).to.eql(700); });",
+                                                                                    "pm.collectionVariables.set(\u0027movimientoId\u0027, pm.response.json().id);",
+                                                                                    "pm.test(\u0027tipo DEPOSITO\u0027, function () { pm.expect(pm.response.json().tipoMovimiento).to.eql(\u0027DEPOSITO\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"225487\",\n  \"valor\": 600,\n  \"fecha\": \"2022-02-10T10:00:00\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Deposito de 150 en 495878 -\u003e 150",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027Saldo disponible = 150\u0027, function () { pm.expect(Number(pm.response.json().saldo)).to.eql(150); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"495878\",\n  \"valor\": 150\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Retiro de 540 en 496825 -\u003e 0 (8/2/2022)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 201\u0027, function () { pm.response.to.have.status(201); });",
+                                                                                    "pm.test(\u0027Saldo disponible = 0\u0027, function () { pm.expect(Number(pm.response.json().saldo)).to.eql(0); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"496825\",\n  \"valor\": -540,\n  \"fecha\": \"2022-02-08T10:00:00\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  }
+                              ]
+                 },
+                 {
+                     "name":  "4. Clientes - CRUD",
                      "item":  [
                                   {
                                       "name":  "Listar clientes",
@@ -415,7 +832,327 @@
                               ]
                  },
                  {
-                     "name":  "3. Clientes - Errores",
+                     "name":  "5. Cuentas y Movimientos - CRU",
+                     "item":  [
+                                  {
+                                      "name":  "Listar cuentas",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027hay 5 cuentas\u0027, function () { pm.expect(pm.response.json().length).to.be.at.least(5); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Listar cuentas de un cliente",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027Marianela tiene 2 cuentas\u0027, function () { pm.expect(pm.response.json().length).to.eql(2); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas?clienteId=mmontalvo",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "clienteId",
+                                                                                    "value":  "mmontalvo"
+                                                                                }
+                                                                            ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Obtener cuenta por numero",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027Saldo actual de la cuenta = 1425\u0027, function () { pm.expect(Number(pm.response.json().currentBalance)).to.eql(1425); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas/478758",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas",
+                                                                               "478758"
+                                                                           ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Actualizar cuenta (PUT)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027tipo actualizado\u0027, function () { pm.expect(pm.response.json().tipoCuenta).to.eql(\u0027AHORROS\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "PUT",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas/585545",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas",
+                                                                               "585545"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{ \"tipoCuenta\": \"AHORROS\", \"estado\": true }",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Restaurar el tipo de la cuenta 585545 a Corriente (PUT, deja intactos los datos de 8.3)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027vuelve a Corriente\u0027, function () { pm.expect(pm.response.json().tipoCuenta).to.eql(\u0027CORRIENTE\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "PUT",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas/585545",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas",
+                                                                               "585545"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{ \"tipoCuenta\": \"CORRIENTE\", \"estado\": true }",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Listar movimientos",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027hay 4 movimientos\u0027, function () { pm.expect(pm.response.json().length).to.be.at.least(4); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Listar movimientos de una cuenta",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027solo de esa cuenta\u0027, function () { pm.response.json().forEach(function (m) { pm.expect(m.numeroCuenta).to.eql(\u0027225487\u0027); }); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos?numeroCuenta=225487",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "numeroCuenta",
+                                                                                    "value":  "225487"
+                                                                                }
+                                                                            ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Corregir fecha de un movimiento (PATCH)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u0027fecha corregida\u0027, function () { pm.expect(pm.response.json().fecha).to.include(\u00272022-02-10T12:30\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "PATCH",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos/{{movimientoId}}",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos",
+                                                                               "{{movimientoId}}"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{ \"fecha\": \"2022-02-10T12:30:00\" }",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  }
+                              ]
+                 },
+                 {
+                     "name":  "6. Errores - Clientes",
                      "item":  [
                                   {
                                       "name":  "Crear con identificacion duplicada (409)",
@@ -577,6 +1314,772 @@
                                                                                "clientes",
                                                                                "no-existe"
                                                                            ]
+                                                              }
+                                                  }
+                                  }
+                              ]
+                 },
+                 {
+                     "name":  "7. Errores - Cuentas y Movimientos",
+                     "item":  [
+                                  {
+                                      "name":  "Retiro sin saldo -\u003e Saldo no disponible (F3)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });",
+                                                                                    "pm.test(\u0027Mensaje exacto: Saldo no disponible\u0027, function () { pm.expect(pm.response.json().message).to.eql(\u0027Saldo no disponible\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"496825\",\n  \"valor\": -1\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Retiro mayor al saldo en 478758 (F3)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: Saldo no disponible\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027Saldo no disponible\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"478758\",\n  \"valor\": -5000\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Movimiento de valor 0 (400)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"478758\",\n  \"valor\": 0\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Movimiento en cuenta inexistente (404)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 404\u0027, function () { pm.response.to.have.status(404); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: Cuenta no encontrada\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027Cuenta no encontrada\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"000000\",\n  \"valor\": 10\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear cuenta duplicada (409)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 409\u0027, function () { pm.response.to.have.status(409); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: Ya existe\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027Ya existe\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"478758\",\n  \"tipoCuenta\": \"AHORROS\",\n  \"saldoInicial\": 10,\n  \"clienteId\": \"jlema\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear cuenta para cliente inexistente (404)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 404\u0027, function () { pm.response.to.have.status(404); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: Cliente no encontrado\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027Cliente no encontrado\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"999999\",\n  \"tipoCuenta\": \"AHORROS\",\n  \"saldoInicial\": 10,\n  \"clienteId\": \"no-existe\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear cuenta con saldo negativo (400)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{\n  \"numeroCuenta\": \"999998\",\n  \"tipoCuenta\": \"AHORROS\",\n  \"saldoInicial\": -5,\n  \"clienteId\": \"jlema\"\n}",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Crear cuenta con tipo invalido (400)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "POST",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas"
+                                                                           ]
+                                                              },
+                                                      "body":  {
+                                                                   "mode":  "raw",
+                                                                   "raw":  "{ \"numeroCuenta\": \"999997\", \"tipoCuenta\": \"PLATINO\", \"saldoInicial\": 1, \"clienteId\": \"jlema\" }",
+                                                                   "options":  {
+                                                                                   "raw":  {
+                                                                                               "language":  "json"
+                                                                                           }
+                                                                               }
+                                                               }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Obtener cuenta inexistente (404)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 404\u0027, function () { pm.response.to.have.status(404); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/cuentas/000000",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "cuentas",
+                                                                               "000000"
+                                                                           ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Obtener movimiento inexistente (404)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 404\u0027, function () { pm.response.to.have.status(404); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/movimientos/999999",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "movimientos",
+                                                                               "999999"
+                                                                           ]
+                                                              }
+                                                  }
+                                  }
+                              ]
+                 },
+                 {
+                     "name":  "8. Reporte - Estado de cuenta (F4)",
+                     "item":  [
+                                  {
+                                      "name":  "Estado de cuenta de Marianela, del 8/2/2022 al 10/2/2022 (8.5)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u00272 fila(s)\u0027, function () { pm.expect(pm.response.json().length).to.eql(2); });",
+                                                                                    "pm.test(\u0027Fila 1 = 8.5 / 8.6 (10/2/2022, cuenta 225487)\u0027, function () {\n    pm.expect(pm.response.json()[0]).to.eql({\n        \u0027Fecha\u0027: \u002710/2/2022\u0027, \u0027Cliente\u0027: \u0027Marianela Montalvo\u0027, \u0027Numero Cuenta\u0027: \u0027225487\u0027, \u0027Tipo\u0027: \u0027Corriente\u0027,\n        \u0027Saldo Inicial\u0027: 100, \u0027Estado\u0027: true, \u0027Movimiento\u0027: 600, \u0027Saldo Disponible\u0027: 700\n    });\n});",
+                                                                                    "pm.test(\u0027Fila 2 = 8.5 (8/2/2022, cuenta 496825)\u0027, function () {\n    pm.expect(pm.response.json()[1]).to.eql({\n        \u0027Fecha\u0027: \u00278/2/2022\u0027, \u0027Cliente\u0027: \u0027Marianela Montalvo\u0027, \u0027Numero Cuenta\u0027: \u0027496825\u0027, \u0027Tipo\u0027: \u0027Ahorros\u0027,\n        \u0027Saldo Inicial\u0027: 540, \u0027Estado\u0027: true, \u0027Movimiento\u0027: -540, \u0027Saldo Disponible\u0027: 0\n    });\n});"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/reportes?fecha=2022-02-08,2022-02-10\u0026cliente=mmontalvo",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "reportes"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "fecha",
+                                                                                    "value":  "2022-02-08,2022-02-10"
+                                                                                },
+                                                                                {
+                                                                                    "key":  "cliente",
+                                                                                    "value":  "mmontalvo"
+                                                                                }
+                                                                            ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Reporte de un solo dia (10/2/2022)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u00271 fila(s)\u0027, function () { pm.expect(pm.response.json().length).to.eql(1); });",
+                                                                                    "pm.test(\u0027es la cuenta 225487\u0027, function () { pm.expect(pm.response.json()[0][\u0027Numero Cuenta\u0027]).to.eql(\u0027225487\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/reportes?fecha=2022-02-10\u0026cliente=mmontalvo",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "reportes"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "fecha",
+                                                                                    "value":  "2022-02-10"
+                                                                                },
+                                                                                {
+                                                                                    "key":  "cliente",
+                                                                                    "value":  "mmontalvo"
+                                                                                }
+                                                                            ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Reporte sin movimientos en el rango (lista vacia)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 200\u0027, function () { pm.response.to.have.status(200); });",
+                                                                                    "pm.test(\u00270 fila(s)\u0027, function () { pm.expect(pm.response.json().length).to.eql(0); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/reportes?fecha=2030-01-01,2030-01-02\u0026cliente=mmontalvo",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "reportes"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "fecha",
+                                                                                    "value":  "2030-01-01,2030-01-02"
+                                                                                },
+                                                                                {
+                                                                                    "key":  "cliente",
+                                                                                    "value":  "mmontalvo"
+                                                                                }
+                                                                            ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Reporte sin parametro fecha (400)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: fecha\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027fecha\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/reportes?cliente=mmontalvo",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "reportes"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "cliente",
+                                                                                    "value":  "mmontalvo"
+                                                                                }
+                                                                            ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Reporte sin parametro cliente (400)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: cliente\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027cliente\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/reportes?fecha=2022-02-08,2022-02-10",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "reportes"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "fecha",
+                                                                                    "value":  "2022-02-08,2022-02-10"
+                                                                                }
+                                                                            ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Reporte con fecha en formato invalido (400)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: formato\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027formato\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/reportes?fecha=10-02-2022\u0026cliente=mmontalvo",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "reportes"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "fecha",
+                                                                                    "value":  "10-02-2022"
+                                                                                },
+                                                                                {
+                                                                                    "key":  "cliente",
+                                                                                    "value":  "mmontalvo"
+                                                                                }
+                                                                            ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Reporte con rango invertido (400)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 400\u0027, function () { pm.response.to.have.status(400); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: posterior\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027posterior\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/reportes?fecha=2022-02-10,2022-02-08\u0026cliente=mmontalvo",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "reportes"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "fecha",
+                                                                                    "value":  "2022-02-10,2022-02-08"
+                                                                                },
+                                                                                {
+                                                                                    "key":  "cliente",
+                                                                                    "value":  "mmontalvo"
+                                                                                }
+                                                                            ]
+                                                              }
+                                                  }
+                                  },
+                                  {
+                                      "name":  "Reporte de un cliente inexistente (404)",
+                                      "event":  [
+                                                    {
+                                                        "script":  {
+                                                                       "exec":  [
+                                                                                    "pm.test(\u0027Status 404\u0027, function () { pm.response.to.have.status(404); });",
+                                                                                    "pm.test(\u0027Mensaje contiene: Cliente no encontrado\u0027, function () { pm.expect(pm.response.json().message).to.include(\u0027Cliente no encontrado\u0027); });"
+                                                                                ],
+                                                                       "type":  "text/javascript"
+                                                                   },
+                                                        "listen":  "test"
+                                                    }
+                                                ],
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+                                                                     {
+                                                                         "key":  "Content-Type",
+                                                                         "value":  "application/json"
+                                                                     }
+                                                                 ],
+                                                      "url":  {
+                                                                  "raw":  "{{baseUrlCuentas}}/api/reportes?fecha=2022-02-08,2022-02-10\u0026cliente=no-existe",
+                                                                  "host":  [
+                                                                               "{{baseUrlCuentas}}"
+                                                                           ],
+                                                                  "path":  [
+                                                                               "api",
+                                                                               "reportes"
+                                                                           ],
+                                                                  "query":  [
+                                                                                {
+                                                                                    "key":  "fecha",
+                                                                                    "value":  "2022-02-08,2022-02-10"
+                                                                                },
+                                                                                {
+                                                                                    "key":  "cliente",
+                                                                                    "value":  "no-existe"
+                                                                                }
+                                                                            ]
                                                               }
                                                   }
                                   }

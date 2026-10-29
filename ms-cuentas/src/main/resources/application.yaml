@@ -1,3 +1,42 @@
 spring:
   application:
-    name: mscuentas
+    name: ms-cuentas
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/bancodb?currentSchema=cuentas}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USER:guest}
+    password: ${RABBIT_PASSWORD:guest}
+    listener:
+      simple:
+        # After the retries are exhausted the message is rejected without requeue and goes to the DLQ
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 1s
+          multiplier: 2
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+
+logging:
+  level:
+    # INFO shows what happens (creations, movements, requests); use LOG_LEVEL=DEBUG for more detail
+    com.dev: ${LOG_LEVEL:INFO}
+
+server:
+  port: ${SERVER_PORT:8082}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
